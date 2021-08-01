@@ -2,15 +2,13 @@ import { reject } from "lodash";
 
 export default class HostService {
     constructor() {
-        this.hostUrl = process.env.MIX_APP_URL + "/api";
+        this.hostUrl = "http://localhost:25941/api";
     }
 
     headers() {
         return {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': (document.querySelector('meta[name="csrf-token"]')).content,
-            'Authorization' : `Bearer ${localStorage.getItem('token')}`
         };
     };
 

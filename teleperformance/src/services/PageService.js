@@ -3,11 +3,19 @@ import HostService from './HostService';
 class PageService extends HostService {
     constructor() {
         super();
-        this.hostUrl = process.env.MIX_APP_URL + "/api";
     }
-    getCompanyAuthorized(nit){
-        let relativeUrl = `/companyAuthorized/${nit}`;
-        this.get(relativeUrl);
+    getCompany(nit) {
+        let relativeUrl = `/Company/${nit}`;
+        return this.get(relativeUrl);
+    }
+    getIdentificationType() {
+        let relativeUrl = '/IdentificationType';
+        return this.get(relativeUrl);
+    }
+
+    putCompany(values) {
+        let relativeUrl = '/Company';
+        return values.put ? this.put(relativeUrl) : this.post(relativeUrl);
     }
 }
 

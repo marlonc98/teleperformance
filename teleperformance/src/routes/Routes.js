@@ -6,6 +6,7 @@ import {
     Redirect
 } from "react-router-dom";
 import CheckNit from '../components/CheckNit';
+import CompanyDetail from '../components/CompanyDetail';
 
 export const routes = {
     checkNit: {
@@ -18,7 +19,7 @@ export const routes = {
         path: "/company-detail",
         path_with_params: "/company-detail",
         authorized_user: [null],
-        component: <companyDetail />,
+        component: <CompanyDetail />,
     }
 };
 

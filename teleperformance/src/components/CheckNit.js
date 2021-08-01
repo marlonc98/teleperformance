@@ -2,15 +2,28 @@ import React, { useContext } from 'react';
 import { translate, tDictionary } from '../translate/translate';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { validatorMinLength, validatorOnlyNumbers, validatorRequired } from '../utils/Utils';
+import {routes} from '../routes/Routes';
 import { ModalContext } from '../context/ModalContext';
+import PageService from '../services/PageService';
+import { useHistory } from 'react-router';
 
 const CheckNit = () => {
     const {modal, setModal} = useContext(ModalContext);
+    const history = useHistory();
     const _submitCheckNit = (_, values) => { 
-        setModal({
-            title: translate(tDictionary.key_authorization_type_not_register),
-            content: translate(tDictionary.key_authorization_type_not_register),
+
+        PageService.getCompany(values.nit).then(response=>{
+        history.push({pathname: routes.companyDetail.path, state: {
+            nit: values.nit,
+            data: null,
+        }});
+    }).catch(err=>{
+            setModal({
+                title: translate(tDictionary.key_authorization_type_not_register),
+                content: err.reason,
+            })
         })
+
     }
     return <div className="container py-5" >
         <div className="card">
